@@ -27,15 +27,48 @@ class LinkedList():
 
     def append(self, value):
         new = Node(value=value)
-        tmp = self.tail
-        tmp.next = new
+        self.tail.next = new
         self.tail = new
         self.length += 1
 
-    def traverse(self):
-        node = self._print_and_return_next(self.head)
-        while (node.next is not None):
-            node = self._print_and_return_next(node)
+    def prepend(self, value):
+        new = Node(value=value)
+        new.next = self.head
+        self.head = new
+        self.length += 1
+
+    def insert(self, value, index):
+        if index <= 1:
+            self.prepend(value)
+        elif index >= self.length:
+            self.append(value)
+        else:
+            node = self.traverse_to_index(index)
+            new = Node(value=value, next=node.next)
+            node.next = new
+            self.length += 1
+
+    def traverse_to_index(self, index):
+        node = self.head
+        for _ in range(index):
+            node = node.next
+        return node
+
+    def to_list(self):
+        vals = []
+        node = self.head
+        while node is not None:
+            vals.append(node.value)
+            node = node.next
+        return vals
+
+    def __repr__(self):
+        output = str(self.to_list())
+        return output
+
+    def __str__(self):
+        output = str(self.to_list())
+        return output
 
     @staticmethod
     def _print_and_return_next(node):
@@ -47,4 +80,9 @@ ls = LinkedList(1)
 ls.append(2)
 ls.append(3)
 ls.append(4)
-ls.traverse()
+ls.prepend(0)
+ls.insert(3.5, 3)
+ls.insert(-1, 1)
+ls.insert(100, 10)
+# ls
+print(ls)
