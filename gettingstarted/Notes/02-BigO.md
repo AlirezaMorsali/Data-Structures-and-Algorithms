@@ -1,0 +1,4 @@
+
+## Good code
+- Readable
+- Scalable
