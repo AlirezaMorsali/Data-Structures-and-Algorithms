@@ -1,4 +1,5 @@
 from typing import Optional, Union, Tuple
+import sys
 
 
 class Node():
@@ -95,6 +96,11 @@ class BinarySearchTree():
             for val in vals:
                 self.insert(val)
 
+    def __repr__(self) -> str:
+        return self.traverse_to_string(self.root)
+
+
+class BinaryTree(BinarySearchTree):
     def breadth_first_search(self):
         def BFS(queue: list, outputs: list):
             if len(queue) == 0:
@@ -139,19 +145,30 @@ class BinarySearchTree():
 
     def __repr__(self) -> str:
         return self.traverse_to_string(self.root)
+        # return f"{self.breadth_first_search()}"
 
 
-bst = BinarySearchTree()
-bst.insert(6)
-print(bst)
-
-bst.insert(1)
-bst.insert(2)
-bst.insert(3)
-bst.insert(7)
-bst.insert(8)
+bst = BinaryTree()
 bst.insert(9)
-print(bst.lookup(7))
+
+bst.insert(4)
+bst.insert(1)
+bst.insert(6)
+bst.insert(20)
+bst.insert(170)
+bst.insert(15)
+# bst.insert(0)
+# bst.insert(2)
+# bst.insert(5)
+# bst.insert(7)
+# bst.insert(14)
+# bst.insert(16)
+# bst.insert(150)
+# bst.insert(180)
+
+
 print(bst)
-bst.remove(7)
-print(bst)
+print(f"{bst.breadth_first_search()}")
+print(bst.traverse_post_order(bst.root, []))
+print(bst.traverse_pre_order(bst.root, []))
+print(bst.traverse_in_order(bst.root, []))
