@@ -118,7 +118,7 @@ class BinaryTree(BinarySearchTree):
 
     def traverse_in_order(self, node: Node, traversal: list):
         if node is None:
-            return []
+            return
         else:
             self.traverse_in_order(node.left, traversal)
             traversal.append(node.value)
@@ -127,7 +127,7 @@ class BinaryTree(BinarySearchTree):
 
     def traverse_pre_order(self, node: Node, traversal: list):
         if node is None:
-            return []
+            return
         else:
             traversal.append(node.value)
             self.traverse_pre_order(node.left, traversal)
@@ -136,7 +136,7 @@ class BinaryTree(BinarySearchTree):
 
     def traverse_post_order(self, node: Node, traversal: list):
         if node is None:
-            return []
+            return
         else:
             self.traverse_post_order(node.left, traversal)
             self.traverse_post_order(node.right, traversal)
